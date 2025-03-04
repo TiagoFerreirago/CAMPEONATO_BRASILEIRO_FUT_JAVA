@@ -1,27 +1,37 @@
 package br.com.cbf.campeonatobrasileiro.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tb_game")
 public class Jogo {
 
-	private Time timeCasa;
-	private Time timeFora;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private Equipe timeCasa;
+	private Equipe timeFora;
 	private Integer golsTimeCasa;
 	private Integer golsTimeFora;
 	private Integer publicoPagante;
+	private String uuid;
 	
+	public Jogo() {}
 	
-	public Time getTimeCasa() {
+	public Equipe getTimeCasa() {
 		return timeCasa;
 	}
-	public void setTimeCasa(Time timeCasa) {
+	public void setTimeCasa(Equipe timeCasa) {
 		this.timeCasa = timeCasa;
 	}
-	public Time getTimeFora() {
+	public Equipe getTimeFora() {
 		return timeFora;
 	}
-	public void setTimeFora(Time timeFora) {
+	public void setTimeFora(Equipe timeFora) {
 		this.timeFora = timeFora;
 	}
 	public Integer getGolsTimeCasa() {
@@ -41,6 +51,12 @@ public class Jogo {
 	}
 	public void setPublicoPagante(Integer publicoPagante) {
 		this.publicoPagante = publicoPagante;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	public String getUuid() {
+		return uuid;
 	}
 	
 	
