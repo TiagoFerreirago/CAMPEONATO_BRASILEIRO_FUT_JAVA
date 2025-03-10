@@ -1,5 +1,6 @@
 package br.com.cbf.campeonatobrasileiro.model;
 
+import br.com.cbf.campeonatobrasileiro.dto.EquipeDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,17 @@ public class Equipe {
 	private String sigla;
 	@Column(length = 5)
 	private String uf;
+	
+
+	public Equipe(EquipeDTO equipeDto) {
+	
+	this.id = equipeDto.getId();
+	this.nome = equipeDto.getNome();
+	this.sigla = equipeDto.getSigla();
+	this.uf = equipeDto.getUf();
+	}
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,6 +54,5 @@ public class Equipe {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
 	
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cbf.campeonatobrasileiro.model.Equipe;
+import br.com.cbf.campeonatobrasileiro.dto.EquipeDTO;
 import br.com.cbf.campeonatobrasileiro.service.EquipeService;
 
 @RequestMapping(value = "/equipes")
@@ -24,20 +24,20 @@ public class EquipeController {
 	private EquipeService equipeService;
 	
 	@GetMapping
-	public ResponseEntity<List<Equipe>> getListaEquipes(){
+	public ResponseEntity<List<EquipeDTO>> getListaEquipes(){
 		
-		List<Equipe> equipes = equipeService.listarEquipes();
+		List<EquipeDTO> equipes = equipeService.listarEquipes();
 		return ResponseEntity.ok().body(equipes);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Equipe> getEquipe(@PathVariable Long id) throws AccountNotFoundException{
+	public ResponseEntity<EquipeDTO> getEquipe(@PathVariable Long id) throws AccountNotFoundException{
 		
-		Equipe equipe = equipeService.buscarEquipe(id);
+		EquipeDTO equipe = equipeService.buscarEquipe(id);
 		return ResponseEntity.ok().body(equipe);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> setEquipe(@RequestBody Equipe equipe){
+	public ResponseEntity<Void> setEquipe(@RequestBody EquipeDTO equipe){
 		
 		equipeService.cadastrarEquipe(equipe);
 		
