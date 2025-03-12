@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cbf.campeonatobrasileiro.model.Jogo;
+import br.com.cbf.campeonatobrasileiro.dto.JogoDTO;
 import br.com.cbf.campeonatobrasileiro.service.JogoService;
 
 @RestController
@@ -25,7 +25,7 @@ public class JogoController {
 		return ResponseEntity.ok().body(LocalDateTime.now());
 	}
 	
-	public ResponseEntity<List<Jogo>>obterJogos(){
+	public ResponseEntity<List<JogoDTO>>obterJogos(){
 		
 	    return ResponseEntity.ok().body(jogoService.obterJogos());
 	}

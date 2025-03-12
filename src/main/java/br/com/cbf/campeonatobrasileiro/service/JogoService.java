@@ -3,10 +3,12 @@ package br.com.cbf.campeonatobrasileiro.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.cbf.campeonatobrasileiro.dto.JogoDTO;
 import br.com.cbf.campeonatobrasileiro.model.Equipe;
 import br.com.cbf.campeonatobrasileiro.model.Jogo;
 import br.com.cbf.campeonatobrasileiro.repository.EquipeRepository;
@@ -89,8 +91,10 @@ public class JogoService {
 		return jogo;
 	}
 
-	public List<Jogo> obterJogos() {
-		return jogoRepository.findAll();
+	public List<JogoDTO> obterJogos() {
+		
+		List<Jogo> jogo = jogoRepository.findAll();
+		return jogo.stream().map( j -> new JogoDTO(j)).collect(Collectors.toList());
 	}
 
 }
