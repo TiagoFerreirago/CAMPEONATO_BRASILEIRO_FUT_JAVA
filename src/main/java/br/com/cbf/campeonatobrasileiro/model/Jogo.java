@@ -1,5 +1,7 @@
 package br.com.cbf.campeonatobrasileiro.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +26,9 @@ public class Jogo {
 	private Integer golsTimeCasa;
 	private Integer golsTimeFora;
 	private Integer publicoPagante;
-	private String uuid;
+	private LocalDateTime dataJogo;
+	private Integer rodada;
+	private Boolean encerrado;
 	
 	public Jogo() {}
 	
@@ -58,11 +62,37 @@ public class Jogo {
 	public void setPublicoPagante(Integer publicoPagante) {
 		this.publicoPagante = publicoPagante;
 	}
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	
+	public Integer getId() {
+		return id;
 	}
-	public String getUuid() {
-		return uuid;
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDataJogo() {
+		return dataJogo;
+	}
+
+	public void setDataJogo(LocalDateTime dataJogo) {
+		this.dataJogo = dataJogo;
+	}
+
+	public Integer getRodada() {
+		return rodada;
+	}
+
+	public void setRodada(Integer rodada) {
+		this.rodada = rodada;
+	}
+
+	public Boolean getEncerrado() {
+		return encerrado;
+	}
+
+	public void setEncerrado(Boolean encerrado) {
+		this.encerrado = encerrado;
 	}
 	
 	

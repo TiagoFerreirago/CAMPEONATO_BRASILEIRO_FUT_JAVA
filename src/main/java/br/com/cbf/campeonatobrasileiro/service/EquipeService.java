@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.cbf.campeonatobrasileiro.dto.EquipeDTO;
 import br.com.cbf.campeonatobrasileiro.model.Equipe;
 import br.com.cbf.campeonatobrasileiro.repository.EquipeRepository;
+import jakarta.persistence.EntityExistsException;
 
 @Service
 public class EquipeService {
@@ -19,10 +20,16 @@ public class EquipeService {
 	private EquipeRepository equipeRepository;
 	
 	
-	public void cadastrarEquipe(EquipeDTO equipeDto) {
-		
+	public EquipeDTO cadastrarEquipe(EquipeDTO equipeDto) {
+		Equipe saveEquipe = null;
+		if(equipeDto == null) {
 		Equipe equipe = new Equipe(equipeDto);
-			equipeRepository.save(equipe);
+		saveEquipe = equipeRepository.save(equipe);
+		}
+		else {
+			throw new EntityExistsException("Equipe já existe!");
+		}
+		return new EquipeDTO(saveEquipe);
 
 	}
 	

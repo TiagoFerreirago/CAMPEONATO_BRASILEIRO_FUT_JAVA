@@ -19,8 +19,9 @@ public class Equipe {
 	private String sigla;
 	@Column(length = 5)
 	private String uf;
+	@Column(length = 50)
+	private String estadio;
 	
-
 	public Equipe(EquipeDTO equipeDto) {
 	
 	this.id = equipeDto.getId();
@@ -54,5 +55,12 @@ public class Equipe {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
+	public String getEstadio() {
+		return estadio;
+	}
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
+	}
+
 	
 }

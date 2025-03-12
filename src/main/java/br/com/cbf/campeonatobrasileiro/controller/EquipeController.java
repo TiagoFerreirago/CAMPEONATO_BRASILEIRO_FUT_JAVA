@@ -37,11 +37,11 @@ public class EquipeController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> setEquipe(@RequestBody EquipeDTO equipe){
+	public ResponseEntity<EquipeDTO> setEquipe(@RequestBody EquipeDTO equipe){
 		
 		equipeService.cadastrarEquipe(equipe);
 		
-		return  ResponseEntity.ok().body(null);
+		return  ResponseEntity.ok().body(equipe);
 	}
 	
 }

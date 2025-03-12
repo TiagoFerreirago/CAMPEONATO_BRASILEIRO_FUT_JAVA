@@ -5,11 +5,11 @@ import br.com.cbf.campeonatobrasileiro.model.Equipe;
 public class EquipeDTO {
 
 	private Long id;
-	private String nome;
-	private String sigla;
-	private String uf;
-	
-	
+		private String nome;
+		private String sigla;
+		private String uf;	
+		private String estadio;
+
 	public EquipeDTO(Equipe equipe) {
 		
 		this.id = equipe.getId();
@@ -41,6 +41,12 @@ public class EquipeDTO {
 	}
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+	public String getEstadio() {
+		return estadio;
+	}
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
 	}
 	
 	

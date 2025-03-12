@@ -6,4 +6,6 @@ import br.com.cbf.campeonatobrasileiro.model.Jogo;
 
 public interface JogoRepository extends JpaRepository<Jogo, Integer> {
 
+	
+
 }
