@@ -1,6 +1,5 @@
 package br.com.cbf.campeonatobrasileiro.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +87,10 @@ public class JogoService {
 		jogo.setGolsTimeFora(0);
 		jogo.setPublicoPagante(0);
 		return jogo;
+	}
+
+	public List<Jogo> obterJogos() {
+		return jogoRepository.findAll();
 	}
 
 }
