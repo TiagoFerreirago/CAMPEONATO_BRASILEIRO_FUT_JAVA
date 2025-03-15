@@ -22,15 +22,16 @@ public class Equipe {
 	@Column(length = 50)
 	private String estadio;
 	
+	public Equipe() {}
+	
 	public Equipe(EquipeDTO equipeDto) {
 	
-	this.id = equipeDto.getId();
 	this.nome = equipeDto.getNome();
 	this.sigla = equipeDto.getSigla();
 	this.uf = equipeDto.getUf();
+	this.estadio = equipeDto.getEstadio();
 	}
 
-	
 	public Long getId() {
 		return id;
 	}

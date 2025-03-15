@@ -9,6 +9,8 @@ public class EquipeDTO {
 	private String sigla;
 	private String uf;	
 	private String estadio;
+	
+	public EquipeDTO(){}
 
 	public EquipeDTO(Equipe equipe) {
 		
@@ -16,6 +18,7 @@ public class EquipeDTO {
 		this.nome = equipe.getNome();
 		this.sigla = equipe.getSigla();
 		this.uf = equipe.getUf();
+		this.estadio = equipe.getEstadio();
 	}
 	
 	public Long getId() {

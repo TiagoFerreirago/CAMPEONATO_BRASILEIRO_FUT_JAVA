@@ -21,15 +21,18 @@ public class EquipeService {
 	
 	
 	public EquipeDTO cadastrarEquipe(EquipeDTO equipeDto) {
-		Equipe saveEquipe = null;
-		if(equipeDto == null) {
+		 
 		Equipe equipe = new Equipe(equipeDto);
-		saveEquipe = equipeRepository.save(equipe);
-		}
-		else {
-			throw new EntityExistsException("Equipe já existe!");
-		}
+		Equipe saveEquipe = equipeRepository.save(equipe);
 		return new EquipeDTO(saveEquipe);
+
+	}
+	
+	public List<EquipeDTO> cadastrarTodasEquipes(List<EquipeDTO> equipesDto) {
+		 
+		List<Equipe> equipes = equipesDto.stream().map( e -> new Equipe(e)).collect(Collectors.toList());
+		List<Equipe> saveEquipe = equipeRepository.saveAll(equipes);
+		return saveEquipe.stream().map( d -> new EquipeDTO(d)).collect(Collectors.toList());
 
 	}
 	

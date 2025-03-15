@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cbf.campeonatobrasileiro.dto.EquipeDTO;
 import br.com.cbf.campeonatobrasileiro.service.EquipeService;
 
-@RequestMapping(value = "/equipes")
+@RequestMapping(value = "/equipe")
 @RestController
 public class EquipeController {
 
@@ -30,18 +30,23 @@ public class EquipeController {
 		return ResponseEntity.ok().body(equipes);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<EquipeDTO> getEquipe(@PathVariable Long id) throws AccountNotFoundException{
+	public ResponseEntity<EquipeDTO> getEquipe(@PathVariable("id") Long id) throws AccountNotFoundException{
 		
 		EquipeDTO equipe = equipeService.buscarEquipe(id);
 		return ResponseEntity.ok().body(equipe);
 	}
 	
 	@PostMapping
-	public ResponseEntity<EquipeDTO> setEquipe(@RequestBody EquipeDTO equipe){
+	public ResponseEntity<EquipeDTO> setEquipe(@RequestBody EquipeDTO equipeDto){
 		
-		equipeService.cadastrarEquipe(equipe);
+		EquipeDTO dto = equipeService.cadastrarEquipe(equipeDto);
 		
-		return  ResponseEntity.ok().body(equipe);
+		return  ResponseEntity.ok().body(dto);
+	}
+	@PostMapping(value = "/todas")
+	public ResponseEntity<List<EquipeDTO>>cadastrarTodasEquipes(@RequestBody List<EquipeDTO>equipeDto){
+		List<EquipeDTO> dto = equipeService.cadastrarTodasEquipes(equipeDto);
+		return ResponseEntity.ok().body(dto);
 	}
 	
 }

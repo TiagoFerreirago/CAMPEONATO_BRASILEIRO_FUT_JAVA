@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.cbf.campeonatobrasileiro.dto.EquipeDTO;
+import br.com.cbf.campeonatobrasileiro.dto.FinalizarJogoDTO;
 import br.com.cbf.campeonatobrasileiro.dto.JogoDTO;
 import br.com.cbf.campeonatobrasileiro.model.Equipe;
 import br.com.cbf.campeonatobrasileiro.model.Jogo;
@@ -31,7 +33,7 @@ public class JogoService {
 		all1.addAll(equipes);
 		all2.addAll(equipes);
 
-		equipeRepository.deleteAll();
+		jogoRepository.deleteAll();
 
 		List<Jogo> jogos= new ArrayList<>();
 
@@ -91,10 +93,27 @@ public class JogoService {
 		return jogo;
 	}
 
-	public List<JogoDTO> obterJogos() {
+	public List<JogoDTO> obterListaJogos() {
 		
 		List<Jogo> jogo = jogoRepository.findAll();
 		return jogo.stream().map( j -> new JogoDTO(j)).collect(Collectors.toList());
+	}
+	
+	public JogoDTO obterJogo(Integer id) throws Exception {
+		
+		Jogo jogo = jogoRepository.findById(id).orElseThrow(() -> new Exception("Equipe não encontrada"));
+		return new JogoDTO(jogo);
+	}
+	
+	public JogoDTO finalizar(Integer id, FinalizarJogoDTO jogoDto) throws Exception {
+		
+		Jogo jogo = jogoRepository.findById(id).orElseThrow(() -> new Exception("Equipe não encontrada!"));
+		jogo.setGolsTimeCasa(jogoDto.getGolsTimeCasa());
+		jogo.setGolsTimeFora(jogoDto.getGolsTimeFora());
+		jogo.setEncerrado(true);
+		jogo.setPublicoPagante(jogoDto.getPublicoPagante());
+		Jogo jogoFinalizado = jogoRepository.save(jogo);
+		return new JogoDTO(jogoFinalizado);
 	}
 
 }
