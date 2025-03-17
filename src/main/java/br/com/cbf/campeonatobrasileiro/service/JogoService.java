@@ -2,6 +2,7 @@ package br.com.cbf.campeonatobrasileiro.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -175,7 +176,13 @@ public class JogoService {
 			classificacaoDto.getTimes().add(classificacaoTimeDto);
 			
 		});
+		Collections.sort(classificacaoDto.getTimes(), Collections.reverseOrder());
 		
+		int posicao = 1;
+		
+		for (ClassificacaoTimeDTO timeDto : classificacaoDto.getTimes()) {
+			timeDto.setPosicao(posicao ++);
+		}	
 		
 		return classificacaoDto;
 	}

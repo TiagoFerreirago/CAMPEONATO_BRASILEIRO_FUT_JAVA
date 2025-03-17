@@ -1,6 +1,6 @@
 package br.com.cbf.campeonatobrasileiro.dto;
 
-public class ClassificacaoTimeDTO {
+public class ClassificacaoTimeDTO implements Comparable<ClassificacaoTimeDTO>{
 
 	private String equipe;
 	private Long idTime;
@@ -12,6 +12,7 @@ public class ClassificacaoTimeDTO {
 	private Integer derrotas;
 	private Integer golsMarcados;
 	private Integer golsSofridos;
+	
 	public String getEquipe() {
 		return equipe;
 	}
@@ -71,6 +72,12 @@ public class ClassificacaoTimeDTO {
 	}
 	public void setGolsSofridos(Integer golsSofridos) {
 		this.golsSofridos = golsSofridos;
+	}
+	@Override
+	public int compareTo(ClassificacaoTimeDTO o) {
+		
+		return this.getPontos().compareTo(o.getPontos());
+
 	}
 	
 	
