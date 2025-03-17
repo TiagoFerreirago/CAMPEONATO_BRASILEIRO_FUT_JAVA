@@ -11,6 +11,6 @@ public interface JogoRepository extends JpaRepository<Jogo, Integer> {
 
 	List<Jogo> findBytimeCasaAndEncerrado(Equipe equipe1, Boolean encerrado);
 	List<Jogo> findBytimeForaAndEncerrado(Equipe equipe2, Boolean encerrado);
-	List<Jogo> findByEncerrado(Equipe equipe, Boolean encerrado);
+	List<Jogo> findByEncerrado(Boolean encerrado);
 
 }
