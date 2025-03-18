@@ -1,4 +1,4 @@
-package br.com.cbf.campeonatobrasileiro.controller;
+	package br.com.cbf.campeonatobrasileiro.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;

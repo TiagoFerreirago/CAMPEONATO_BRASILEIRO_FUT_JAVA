@@ -125,16 +125,16 @@ public class JogoService {
 		ClassificacaoDTO classificacaoDto = new ClassificacaoDTO();
 		
 		List<Equipe> equipes = equipeRepository.findAll();
-		AtomicReference<Integer>vitorias = new AtomicReference<Integer>(0);
-		AtomicReference<Integer>empates = new AtomicReference<Integer>(0);
-		AtomicReference<Integer>derrotas = new AtomicReference<Integer>(0);
-		AtomicReference<Integer>golsSofridos = new AtomicReference<Integer>(0);
-		AtomicReference<Integer>golsMarcados = new AtomicReference<Integer>(0);
 	
 		equipes.forEach( time -> {
-			List<Jogo> equipeMandante = jogoRepository.findBytimeCasaAndEncerrado(time, true);
-			List<Jogo> equipeVisitante = jogoRepository.findBytimeForaAndEncerrado(time, true);
 			
+			List<Jogo> equipeMandante = jogoRepository.buscarPorTimeCasa(time, true);
+			List<Jogo> equipeVisitante = jogoRepository.buscarPorTimeFora(time, true);
+			AtomicReference<Integer>vitorias = new AtomicReference<Integer>(0);
+			AtomicReference<Integer>empates = new AtomicReference<Integer>(0);
+			AtomicReference<Integer>derrotas = new AtomicReference<Integer>(0);
+			AtomicReference<Integer>golsSofridos = new AtomicReference<Integer>(0);
+			AtomicReference<Integer>golsMarcados = new AtomicReference<Integer>(0);
 			equipeMandante.forEach( mandante -> {
 				if(mandante.getGolsTimeCasa() > mandante.getGolsTimeFora()) {
 					vitorias.getAndSet(vitorias.get() + 1);
@@ -159,8 +159,8 @@ public class JogoService {
 				else {
 					empates.getAndSet( empates.get() + 1);
 				}
-				golsMarcados.set(golsMarcados.get() + visitante.getGolsTimeCasa());
-				golsSofridos.set(golsSofridos.get() + visitante.getGolsTimeFora());
+				golsMarcados.set(golsMarcados.get() + visitante.getGolsTimeFora());
+				golsSofridos.set(golsSofridos.get() + visitante.getGolsTimeCasa());
 			});
 			ClassificacaoTimeDTO classificacaoTimeDto =  new ClassificacaoTimeDTO();
 			classificacaoTimeDto.setDerrotas(derrotas.get());
